@@ -1,0 +1,52 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🌍 Countries Analytics
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>Country</th>
+                    <th>Total Records</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for country, count in countries %}
+
+                <tr>
+
+                    <td>
+                        {{ country }}
+                    </td>
+
+                    <td>
+                        {{ count }}
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    ✈ Flight Center
+</h1>
+
+<div class="mb-4">
+
+    <a class="btn btn-warning"
+       href="/flights/live">
+
+        🌍 Live Flights
+
+    </a>
+
+</div>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Flight</th>
+                    <th>Status</th>
+                    <th>Details</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for flight in flights %}
+
+                <tr>
+
+                    <td>
+                        {{ flight.id }}
+                    </td>
+
+                    <td>
+                        {{ flight.flight_number }}
+                    </td>
+
+                    <td>
+                        {{ flight.status }}
+                    </td>
+
+                    <td>
+
+                        <a
+                        class="btn btn-primary btn-sm"
+                        href="/flights/details/{{ flight.flight_number }}">
+
+                            Open
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

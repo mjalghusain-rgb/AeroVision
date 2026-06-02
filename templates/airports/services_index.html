@@ -1,0 +1,60 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    ✈ Airport Services
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>Airport</th>
+                    <th>Open</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for airport in airports %}
+
+                <tr>
+
+                    <td>
+                        {{ airport }}
+                    </td>
+
+                    <td>
+
+                        <a
+                        class="btn btn-primary btn-sm"
+                        href="/airport-services/{{ airport }}">
+
+                            Open
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

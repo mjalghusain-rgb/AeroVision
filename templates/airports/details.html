@@ -1,0 +1,206 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🛫 {{ airport.name }}
+</h1>
+
+<div class="card mb-4">
+
+    <div class="card-body">
+
+        <table class="table">
+
+            <tr>
+                <th>IATA</th>
+                <td>{{ airport.iata_code }}</td>
+            </tr>
+
+            <tr>
+                <th>ICAO</th>
+                <td>{{ airport.icao_code }}</td>
+            </tr>
+
+            <tr>
+                <th>City</th>
+                <td>{{ airport.city }}</td>
+            </tr>
+
+            <tr>
+                <th>Country</th>
+                <td>{{ airport.country }}</td>
+            </tr>
+
+            <tr>
+                <th>Terminals</th>
+                <td>{{ airport.terminals }}</td>
+            </tr>
+
+            <tr>
+                <th>Arrivals</th>
+                <td>{{ arrivals|length }}</td>
+            </tr>
+
+            <tr>
+                <th>Departures</th>
+                <td>{{ departures|length }}</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="card mb-4">
+
+    <div class="card-header">
+
+        ✈ Departures
+
+    </div>
+
+    <div class="card-body">
+
+        {% if departures %}
+
+            <table class="table table-striped">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Flight</th>
+                        <th>Status</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for flight in departures %}
+
+                    <tr>
+
+                        <td>
+                            {{ flight.flight_number }}
+                        </td>
+
+                        <td>
+                            {{ flight.status }}
+                        </td>
+
+                        <td>
+                            {{ flight.departure_time }}
+                        </td>
+
+                        <td>
+                            {{ flight.arrival_time }}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        {% else %}
+
+            <p>
+                No departures found.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="card-header">
+
+        🛬 Arrivals
+
+    </div>
+
+    <div class="card-body">
+
+        {% if arrivals %}
+
+            <table class="table table-striped">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Flight</th>
+                        <th>Status</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for flight in arrivals %}
+
+                    <tr>
+
+                        <td>
+                            {{ flight.flight_number }}
+                        </td>
+
+                        <td>
+                            {{ flight.status }}
+                        </td>
+
+                        <td>
+                            {{ flight.departure_time }}
+                        </td>
+
+                        <td>
+                            {{ flight.arrival_time }}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        {% else %}
+
+            <p>
+                No arrivals found.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<div class="mt-4">
+
+    <a
+    href="/airports"
+    class="btn btn-primary">
+
+        ← Back To Airports
+
+    </a>
+
+</div>
+
+{% endblock %}

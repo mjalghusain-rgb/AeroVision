@@ -1,0 +1,61 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    {{ country.country }}
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table">
+
+            <tr>
+                <th>Country</th>
+                <td>{{ country.country }}</td>
+            </tr>
+
+            <tr>
+                <th>Capital</th>
+                <td>{{ country.capital }}</td>
+            </tr>
+
+            <tr>
+                <th>Currency</th>
+                <td>{{ country.currency }}</td>
+            </tr>
+
+            <tr>
+                <th>Language</th>
+                <td>{{ country.language }}</td>
+            </tr>
+
+            <tr>
+                <th>Emergency Number</th>
+                <td>{{ country.emergency_number }}</td>
+            </tr>
+
+            <tr>
+                <th>Visa Required</th>
+                <td>{{ country.visa_required }}</td>
+            </tr>
+
+            <tr>
+                <th>Transport</th>
+                <td>{{ country.transport }}</td>
+            </tr>
+
+            <tr>
+                <th>Weather</th>
+                <td>{{ country.weather }}</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

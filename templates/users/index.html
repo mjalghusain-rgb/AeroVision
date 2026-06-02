@@ -1,0 +1,78 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    👥 Users
+</h1>
+
+<a
+class="btn btn-success mb-4"
+href="/users/search">
+
+    🔍 Search Users
+
+</a>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Details</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for user in users %}
+
+                <tr>
+
+                    <td>{{ user.user_id }}</td>
+
+                    <td>{{ user.username }}</td>
+
+                    <td>{{ user.email }}</td>
+
+                    <td>{{ user.role }}</td>
+
+                    <td>{{ user.status }}</td>
+
+                    <td>
+
+                        <a
+                        class="btn btn-primary btn-sm"
+                        href="/users/details/{{ user.user_id }}">
+
+                            Open
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

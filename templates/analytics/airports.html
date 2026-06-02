@@ -1,0 +1,51 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🛫 Airports Analytics
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>IATA</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for airport in airports %}
+
+                <tr>
+
+                    <td>{{ airport.name }}</td>
+                    <td>{{ airport.city }}</td>
+                    <td>{{ airport.country }}</td>
+                    <td>{{ airport.iata_code }}</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

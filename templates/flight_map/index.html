@@ -1,0 +1,54 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🌍 Flight Map Test
+</h1>
+
+<div id="map"
+     style="height:700px;width:100%;">
+</div>
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<script
+src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        var map = L.map(
+            "map"
+        ).setView(
+            [20, 0],
+            2
+        );
+
+        L.tileLayer(
+            "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                maxZoom: 19
+            }
+        ).addTo(map);
+
+        L.marker(
+            [59.6519, 17.9186]
+        ).addTo(map)
+         .bindPopup(
+            "Stockholm Arlanda"
+         );
+
+    }
+);
+
+</script>
+
+{% endblock %}

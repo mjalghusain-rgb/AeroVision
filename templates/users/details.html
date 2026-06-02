@@ -1,0 +1,51 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    User Details
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table">
+
+            <tr>
+                <th>ID</th>
+                <td>{{ user.user_id }}</td>
+            </tr>
+
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+
+            <tr>
+                <th>Role</th>
+                <td>{{ user.role }}</td>
+            </tr>
+
+            <tr>
+                <th>Language</th>
+                <td>{{ user.language }}</td>
+            </tr>
+
+            <tr>
+                <th>Status</th>
+                <td>{{ user.status }}</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

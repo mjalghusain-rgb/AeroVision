@@ -1,0 +1,51 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    {{ notification.title }}
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table">
+
+            <tr>
+                <th>ID</th>
+                <td>{{ notification.notification_id }}</td>
+            </tr>
+
+            <tr>
+                <th>Title</th>
+                <td>{{ notification.title }}</td>
+            </tr>
+
+            <tr>
+                <th>Message</th>
+                <td>{{ notification.message }}</td>
+            </tr>
+
+            <tr>
+                <th>Type</th>
+                <td>{{ notification.type }}</td>
+            </tr>
+
+            <tr>
+                <th>Status</th>
+                <td>{{ notification.status }}</td>
+            </tr>
+
+            <tr>
+                <th>Created</th>
+                <td>{{ notification.created_at }}</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

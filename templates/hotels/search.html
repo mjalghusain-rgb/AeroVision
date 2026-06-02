@@ -1,0 +1,79 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🔍 Hotel Search
+</h1>
+
+<form
+method="GET"
+action="/hotels/search">
+
+    <div class="input-group mb-4">
+
+        <input
+        type="text"
+        class="form-control"
+        name="q"
+        placeholder="Hotel Name, City, Country"
+        value="{{ query }}">
+
+        <button
+        class="btn btn-primary">
+
+            Search
+
+        </button>
+
+    </div>
+
+</form>
+
+{% if query %}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>Hotel</th>
+                    <th>City</th>
+                    <th>Stars</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for hotel in hotels %}
+
+                <tr>
+
+                    <td>{{ hotel.name }}</td>
+                    <td>{{ hotel.city }}</td>
+                    <td>{{ hotel.stars }}</td>
+                    <td>{{ hotel.status }}</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

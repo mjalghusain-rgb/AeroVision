@@ -1,0 +1,106 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    {{ hotel.name }}
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table">
+
+            <tr>
+                <th>Hotel ID</th>
+                <td>{{ hotel.hotel_id }}</td>
+            </tr>
+
+            <tr>
+                <th>Name</th>
+                <td>{{ hotel.name }}</td>
+            </tr>
+
+            <tr>
+                <th>Airport</th>
+                <td>{{ hotel.airport }}</td>
+            </tr>
+
+            <tr>
+                <th>Address</th>
+                <td>{{ hotel.address }}</td>
+            </tr>
+
+            <tr>
+                <th>City</th>
+                <td>{{ hotel.city }}</td>
+            </tr>
+
+            <tr>
+                <th>Country</th>
+                <td>{{ hotel.country }}</td>
+            </tr>
+
+            <tr>
+                <th>Distance From Airport</th>
+                <td>{{ hotel.distance_km }} km</td>
+            </tr>
+
+            <tr>
+                <th>Stars</th>
+                <td>{{ hotel.stars }}</td>
+            </tr>
+
+            <tr>
+                <th>Price Per Night</th>
+                <td>{{ hotel.price_per_night }} SEK</td>
+            </tr>
+
+            <tr>
+                <th>Phone</th>
+                <td>{{ hotel.phone }}</td>
+            </tr>
+
+            <tr>
+                <th>Website</th>
+
+                <td>
+
+                    <a
+                    href="{{ hotel.website }}"
+                    target="_blank">
+
+                        Official Website
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <th>Status</th>
+                <td>{{ hotel.status }}</td>
+            </tr>
+
+        </table>
+
+        <div class="mt-3">
+
+            <a
+            class="btn btn-success"
+            target="_blank"
+            href="{{ hotel.website }}">
+
+                🏨 Book Now
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

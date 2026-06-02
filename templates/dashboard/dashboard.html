@@ -1,0 +1,160 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    Dashboard
+</h1>
+
+<div class="alert alert-primary">
+
+    <h4>
+        Welcome {{ user.username }}
+    </h4>
+
+    <p>
+        Email: {{ user.email }}
+    </p>
+
+    <p>
+        Role: {{ user.role }}
+    </p>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ stats.users }}
+                </h2>
+
+                <p>
+                    Users
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ stats.flights }}
+                </h2>
+
+                <p>
+                    Flights
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ stats.hotels }}
+                </h2>
+
+                <p>
+                    Hotels
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ stats.cars }}
+                </h2>
+
+                <p>
+                    Cars
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                System Statistics
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table">
+
+                    <tr>
+                        <th>Users</th>
+                        <td>{{ stats.users }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Flights</th>
+                        <td>{{ stats.flights }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Hotels</th>
+                        <td>{{ stats.hotels }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Cars</th>
+                        <td>{{ stats.cars }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Notifications</th>
+                        <td>{{ stats.notifications }}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

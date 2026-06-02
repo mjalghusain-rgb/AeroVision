@@ -1,0 +1,79 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🔍 Notification Search
+</h1>
+
+<form
+method="GET"
+action="/notifications/search">
+
+    <div class="input-group mb-4">
+
+        <input
+        type="text"
+        class="form-control"
+        name="q"
+        placeholder="Title, Message, Type, Status"
+        value="{{ query }}">
+
+        <button
+        class="btn btn-primary">
+
+            Search
+
+        </button>
+
+    </div>
+
+</form>
+
+{% if query %}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for notification in notifications %}
+
+                <tr>
+
+                    <td>{{ notification.notification_id }}</td>
+                    <td>{{ notification.title }}</td>
+                    <td>{{ notification.type }}</td>
+                    <td>{{ notification.status }}</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

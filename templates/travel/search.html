@@ -1,0 +1,79 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🔍 Travel Search
+</h1>
+
+<form
+method="GET"
+action="/travel/search">
+
+    <div class="input-group mb-4">
+
+        <input
+        type="text"
+        class="form-control"
+        name="q"
+        placeholder="Country, Capital, Currency, Language"
+        value="{{ query }}">
+
+        <button
+        class="btn btn-primary">
+
+            Search
+
+        </button>
+
+    </div>
+
+</form>
+
+{% if query %}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>Country</th>
+                    <th>Capital</th>
+                    <th>Currency</th>
+                    <th>Language</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for country in countries %}
+
+                <tr>
+
+                    <td>{{ country.country }}</td>
+                    <td>{{ country.capital }}</td>
+                    <td>{{ country.currency }}</td>
+                    <td>{{ country.language }}</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

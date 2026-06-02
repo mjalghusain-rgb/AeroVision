@@ -1,0 +1,313 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    📊 Flight Analytics Center
+</h1>
+
+<div class="mb-4">
+
+    <a
+    href="/analytics/airlines"
+    class="btn btn-primary">
+
+        ✈ Airlines
+
+    </a>
+
+    <a
+    href="/analytics/airports"
+    class="btn btn-success">
+
+        🛫 Airports
+
+    </a>
+
+    <a
+    href="/analytics/countries"
+    class="btn btn-warning">
+
+        🌍 Countries
+
+    </a>
+
+    <a
+    href="/analytics/cities"
+    class="btn btn-info">
+
+        🏙 Cities
+
+    </a>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ total_flights }}
+                </h2>
+
+                <p>
+                    Flights
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ total_airlines }}
+                </h2>
+
+                <p>
+                    Airlines
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ total_airports }}
+                </h2>
+
+                <p>
+                    Airports
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ total_bookings }}
+                </h2>
+
+                <p>
+                    Bookings
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card text-center border-success">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ confirmed_bookings }}
+                </h2>
+
+                <p>
+                    Confirmed Bookings
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card text-center border-danger">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ cancelled_bookings }}
+                </h2>
+
+                <p>
+                    Cancelled Bookings
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card text-center border-warning">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ revenue }}
+                </h2>
+
+                <p>
+                    Revenue (SEK)
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card">
+
+            <div class="card-body text-center">
+
+                <h4>
+                    ✈ Airlines Analytics
+                </h4>
+
+                <p>
+                    Browse all airlines in the database.
+                </p>
+
+                <a
+                href="/analytics/airlines"
+                class="btn btn-primary">
+
+                    Open Airlines
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card">
+
+            <div class="card-body text-center">
+
+                <h4>
+                    🛫 Airports Analytics
+                </h4>
+
+                <p>
+                    Browse all airports in the database.
+                </p>
+
+                <a
+                href="/analytics/airports"
+                class="btn btn-success">
+
+                    Open Airports
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card">
+
+            <div class="card-body text-center">
+
+                <h4>
+                    🌍 Countries Analytics
+                </h4>
+
+                <p>
+                    View country statistics.
+                </p>
+
+                <a
+                href="/analytics/countries"
+                class="btn btn-warning">
+
+                    Open Countries
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card">
+
+            <div class="card-body text-center">
+
+                <h4>
+                    🏙 Cities Analytics
+                </h4>
+
+                <p>
+                    View city statistics.
+                </p>
+
+                <a
+                href="/analytics/cities"
+                class="btn btn-info">
+
+                    Open Cities
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

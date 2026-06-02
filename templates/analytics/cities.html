@@ -1,0 +1,52 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🏙 Cities Analytics
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>City</th>
+                    <th>Airports</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for city, count in cities %}
+
+                <tr>
+
+                    <td>
+                        {{ city }}
+                    </td>
+
+                    <td>
+                        {{ count }}
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

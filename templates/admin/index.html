@@ -1,0 +1,257 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🛠 Admin Dashboard
+</h1>
+
+<div class="mb-4">
+
+    <a
+    href="/admin/sync-flights"
+    class="btn btn-success">
+
+        🔄 Import Live Flights
+
+    </a>
+
+    <a
+    href="/admin/enrich-airports"
+    class="btn btn-info">
+
+        🌍 Enrich Airports
+
+    </a>
+
+    <a
+    href="/admin/users"
+    class="btn btn-primary">
+
+        👥 User Management
+
+    </a>
+
+    <a
+    href="/admin/bookings"
+    class="btn btn-warning">
+
+        🎫 Manage Bookings
+
+    </a>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h3>
+                    {{ stats.users }}
+                </h3>
+
+                <p>
+                    Users
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h3>
+                    {{ stats.flights }}
+                </h3>
+
+                <p>
+                    Flights
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h3>
+                    {{ stats.hotels }}
+                </h3>
+
+                <p>
+                    Hotels
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h3>
+                    {{ stats.cars }}
+                </h3>
+
+                <p>
+                    Cars
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center border-primary">
+
+            <div class="card-body">
+
+                <h3>
+                    {{ stats.bookings }}
+                </h3>
+
+                <p>
+                    Total Bookings
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center border-success">
+
+            <div class="card-body">
+
+                <h3>
+                    {{ stats.confirmed_bookings }}
+                </h3>
+
+                <p>
+                    Confirmed
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center border-danger">
+
+            <div class="card-body">
+
+                <h3>
+                    {{ stats.cancelled_bookings }}
+                </h3>
+
+                <p>
+                    Cancelled
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card text-center border-warning">
+
+            <div class="card-body">
+
+                <h3>
+                    {{ "%.2f"|format(stats.revenue) }}
+                </h3>
+
+                <p>
+                    Revenue (SEK)
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h3>
+                    {{ stats.notifications }}
+                </h3>
+
+                <p>
+                    Notifications
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <a
+                href="/admin/bookings"
+                class="btn btn-lg btn-warning">
+
+                    🎫 Open Booking Management
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

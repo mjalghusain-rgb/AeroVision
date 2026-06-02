@@ -1,0 +1,67 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    ✈ Flight Bookings
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Reference</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Price</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for booking in bookings %}
+
+                <tr>
+
+                    <td>
+                        {{ booking.id }}
+                    </td>
+
+                    <td>
+                        {{ booking.booking_reference }}
+                    </td>
+
+                    <td>
+                        {{ booking.user.username }}
+                    </td>
+
+                    <td>
+                        {{ booking.booking_status }}
+                    </td>
+
+                    <td>
+                        {{ booking.total_price }}
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

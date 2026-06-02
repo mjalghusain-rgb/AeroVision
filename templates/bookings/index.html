@@ -1,0 +1,97 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    📋 My Bookings
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        {% if bookings %}
+
+        <table class="table table-striped table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Reference</th>
+                    <th>Status</th>
+                    <th>Class</th>
+                    <th>Price</th>
+                    <th>Created</th>
+                    <th>Details</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for booking in bookings %}
+
+                <tr>
+
+                    <td>
+                        {{ booking.id }}
+                    </td>
+
+                    <td>
+                        {{ booking.booking_reference }}
+                    </td>
+
+                    <td>
+                        {{ booking.booking_status }}
+                    </td>
+
+                    <td>
+                        {{ booking.travel_class }}
+                    </td>
+
+                    <td>
+                        {{ booking.total_price }}
+                    </td>
+
+                    <td>
+                        {{ booking.created_at }}
+                    </td>
+
+                    <td>
+
+                        <a
+                        class="btn btn-sm btn-primary"
+                        href="/bookings/details/{{ booking.booking_reference }}">
+
+                            Open
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="alert alert-info">
+
+            No bookings found.
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

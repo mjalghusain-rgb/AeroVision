@@ -1,0 +1,121 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    Airport Services - {{ airport_code }}
+</h1>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                🍔 Restaurants
+            </div>
+
+            <div class="card-body">
+
+                <ul>
+
+                {% for item in services.restaurants %}
+
+                    <li>{{ item }}</li>
+
+                {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                🛋 Lounges
+            </div>
+
+            <div class="card-body">
+
+                <ul>
+
+                {% for item in services.lounges %}
+
+                    <li>{{ item }}</li>
+
+                {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                🚗 Parking
+            </div>
+
+            <div class="card-body">
+
+                <ul>
+
+                {% for item in services.parking %}
+
+                    <li>{{ item }}</li>
+
+                {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                🚆 Transport
+            </div>
+
+            <div class="card-body">
+
+                <ul>
+
+                {% for item in services.transport %}
+
+                    <li>{{ item }}</li>
+
+                {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

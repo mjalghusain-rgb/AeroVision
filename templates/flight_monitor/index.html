@@ -1,0 +1,190 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    ✈ Flight Monitor Dashboard
+</h1>
+
+<div class="row">
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ total_flights }}
+                </h2>
+
+                <p>
+                    Flights
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ total_airports }}
+                </h2>
+
+                <p>
+                    Airports
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h2>
+                    {{ total_airlines }}
+                </h2>
+
+                <p>
+                    Airlines
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<h3 class="mt-4">
+    🏆 Most Active Airports
+</h3>
+
+<table class="table table-striped">
+
+    <thead>
+
+        <tr>
+
+            <th>Airport</th>
+            <th>Flights</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for airport,count in top_airports %}
+
+        <tr>
+
+            <td>
+                {{ airport }}
+            </td>
+
+            <td>
+                {{ count }}
+            </td>
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+<h3 class="mt-5">
+    ✈ Most Active Airlines
+</h3>
+
+<table class="table table-striped">
+
+    <thead>
+
+        <tr>
+
+            <th>Airline</th>
+            <th>Flights</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for airline,count in top_airlines %}
+
+        <tr>
+
+            <td>
+                {{ airline }}
+            </td>
+
+            <td>
+                {{ count }}
+            </td>
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+<h3 class="mt-5">
+    🛫 Latest Flights
+</h3>
+
+<table class="table table-hover">
+
+    <thead>
+
+        <tr>
+
+            <th>Flight</th>
+            <th>Status</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for flight in latest_flights %}
+
+        <tr>
+
+            <td>
+                {{ flight.flight_number }}
+            </td>
+
+            <td>
+                {{ flight.status }}
+            </td>
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

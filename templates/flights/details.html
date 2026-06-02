@@ -1,0 +1,223 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    ✈ Flight {{ flight.flight_number }}
+</h1>
+
+<div class="row">
+
+    <div class="col-md-8">
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+
+                Flight Information
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table">
+
+                    <tr>
+                        <th>Flight Number</th>
+                        <td>{{ flight.flight_number }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ flight.status }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Airline</th>
+                        <td>
+
+                            {% if flight.airline %}
+                                {{ flight.airline.name }}
+                            {% else %}
+                                Unknown
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Aircraft</th>
+                        <td>
+
+                            {% if flight.aircraft_type %}
+                                {{ flight.aircraft_type }}
+                            {% else %}
+                                Unknown
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Terminal</th>
+                        <td>
+
+                            {% if flight.terminal %}
+                                {{ flight.terminal }}
+                            {% else %}
+                                -
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Gate</th>
+                        <td>
+
+                            {% if flight.gate %}
+                                {{ flight.gate }}
+                            {% else %}
+                                -
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Departure Time</th>
+                        <td>{{ flight.departure_time }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Arrival Time</th>
+                        <td>{{ flight.arrival_time }}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+
+                Route
+
+            </div>
+
+            <div class="card-body">
+
+                <h5>
+                    🛫 Departure
+                </h5>
+
+                {% if flight.departure_airport %}
+
+                    <p>
+
+                        <strong>
+                            {{ flight.departure_airport.name }}
+                        </strong>
+
+                        <br>
+
+                        {{ flight.departure_airport.city }}
+
+                        <br>
+
+                        {{ flight.departure_airport.country }}
+
+                        <br>
+
+                        {{ flight.departure_airport.iata_code }}
+
+                    </p>
+
+                    <a
+                    class="btn btn-sm btn-primary"
+                    href="/airports/{{ flight.departure_airport.iata_code }}">
+
+                        Open Airport
+
+                    </a>
+
+                {% endif %}
+
+                <hr>
+
+                <h5>
+                    🛬 Arrival
+                </h5>
+
+                {% if flight.arrival_airport %}
+
+                    <p>
+
+                        <strong>
+                            {{ flight.arrival_airport.name }}
+                        </strong>
+
+                        <br>
+
+                        {{ flight.arrival_airport.city }}
+
+                        <br>
+
+                        {{ flight.arrival_airport.country }}
+
+                        <br>
+
+                        {{ flight.arrival_airport.iata_code }}
+
+                    </p>
+
+                    <a
+                    class="btn btn-sm btn-primary"
+                    href="/airports/{{ flight.arrival_airport.iata_code }}">
+
+                        Open Airport
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <a
+        href="/bookings/create/{{ flight.id }}"
+        class="btn btn-success">
+
+            🎫 Book Flight
+
+        </a>
+
+        <a
+        href="/flights"
+        class="btn btn-secondary">
+
+            ← Back To Flights
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

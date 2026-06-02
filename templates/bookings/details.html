@@ -1,0 +1,132 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🎫 Booking Details
+</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table">
+
+            <tr>
+                <th>Reference</th>
+                <td>{{ booking.booking_reference }}</td>
+            </tr>
+
+            <tr>
+                <th>Status</th>
+                <td>{{ booking.booking_status }}</td>
+            </tr>
+
+            <tr>
+                <th>Seat</th>
+                <td>{{ booking.seat_number }}</td>
+            </tr>
+
+            <tr>
+                <th>Class</th>
+                <td>{{ booking.travel_class }}</td>
+            </tr>
+
+            <tr>
+                <th>Price</th>
+                <td>{{ booking.total_price }} SEK</td>
+            </tr>
+
+            <tr>
+                <th>Created</th>
+                <td>{{ booking.created_at }}</td>
+            </tr>
+
+            {% if booking.flight %}
+
+            <tr>
+                <th>Flight Number</th>
+                <td>{{ booking.flight.flight_number }}</td>
+            </tr>
+
+            <tr>
+                <th>Flight Status</th>
+                <td>{{ booking.flight.status }}</td>
+            </tr>
+
+            <tr>
+                <th>Departure</th>
+                <td>{{ booking.flight.departure_time }}</td>
+            </tr>
+
+            <tr>
+                <th>Arrival</th>
+                <td>{{ booking.flight.arrival_time }}</td>
+            </tr>
+
+            {% if booking.flight.airline %}
+            <tr>
+                <th>Airline</th>
+                <td>{{ booking.flight.airline.name }}</td>
+            </tr>
+            {% endif %}
+
+            {% if booking.flight.departure_airport %}
+            <tr>
+                <th>From Airport</th>
+                <td>{{ booking.flight.departure_airport.name }}</td>
+            </tr>
+            {% endif %}
+
+            {% if booking.flight.arrival_airport %}
+            <tr>
+                <th>To Airport</th>
+                <td>{{ booking.flight.arrival_airport.name }}</td>
+            </tr>
+            {% endif %}
+
+            {% endif %}
+
+        </table>
+
+        <div class="mt-3">
+
+            <a
+            href="/bookings/ticket/{{ booking.booking_reference }}"
+            class="btn btn-success">
+
+                🎫 Download Ticket PDF
+
+            </a>
+
+            <a
+            href="/bookings/qr/{{ booking.booking_reference }}"
+            class="btn btn-dark">
+
+                📱 View QR Code
+
+            </a>
+
+            <a
+            href="/bookings/cancel/{{ booking.booking_reference }}"
+            class="btn btn-danger">
+
+                ❌ Cancel Booking
+
+            </a>
+
+            <a
+            href="/bookings"
+            class="btn btn-primary">
+
+                Back To Bookings
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

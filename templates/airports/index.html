@@ -1,0 +1,143 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🛫 Airports Center
+</h1>
+
+<form
+method="GET"
+class="mb-4">
+
+    <div class="input-group">
+
+        <input
+        type="text"
+        name="search"
+        class="form-control"
+        placeholder="Search airport, city, country, IATA, ICAO"
+        value="{{ search }}">
+
+        <button
+        class="btn btn-primary"
+        type="submit">
+
+            Search
+
+        </button>
+
+    </div>
+
+</form>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <p>
+
+            Total Results:
+            {{ airports.total }}
+
+        </p>
+
+        <table class="table table-striped table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>IATA</th>
+                    <th>ICAO</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Country</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for airport in airports.items %}
+
+                <tr>
+
+                    <td>
+                        {{ airport.iata_code }}
+                    </td>
+
+                    <td>
+                        {{ airport.icao_code }}
+                    </td>
+
+                    <td>
+
+                        <a
+                        href="/airports/{{ airport.iata_code }}">
+
+                            {{ airport.name }}
+
+                        </a>
+
+                    </td>
+
+                    <td>
+                        {{ airport.city }}
+                    </td>
+
+                    <td>
+                        {{ airport.country }}
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="mt-4">
+
+    {% if airports.has_prev %}
+
+        <a
+        class="btn btn-secondary"
+        href="?page={{ airports.prev_num }}&search={{ search }}">
+
+            ← Previous
+
+        </a>
+
+    {% endif %}
+
+    <span class="mx-3">
+
+        Page
+        {{ airports.page }}
+        of
+        {{ airports.pages }}
+
+    </span>
+
+    {% if airports.has_next %}
+
+        <a
+        class="btn btn-secondary"
+        href="?page={{ airports.next_num }}&search={{ search }}">
+
+            Next →
+
+        </a>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
