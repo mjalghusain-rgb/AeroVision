@@ -3,11 +3,74 @@
 {% block content %}
 
 <h1 class="mb-4">
-    🌍 Flight Map Test
+    🌍 AeroVision Flight Map
 </h1>
 
-<div id="map"
-     style="height:700px;width:100%;">
+<div class="row mb-3">
+
+    <div class="col-md-3">
+
+        <div class="card">
+            <div class="card-body">
+
+                <h5>Airports</h5>
+
+                <h2>
+                    {{ airport_count }}
+                </h2>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card">
+            <div class="card-body">
+
+                <h5>Routes</h5>
+
+                <h2>
+                    {{ flight_count }}
+                </h2>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mb-3">
+
+    <div class="col-md-6">
+
+        <input
+            id="airportSearch"
+            class="form-control"
+            placeholder="Search Airport (ARN, Stockholm...)">
+
+    </div>
+
+    <div class="col-md-6">
+
+        <input
+            id="flightSearch"
+            class="form-control"
+            placeholder="Search Flight (LH9581...)">
+
+    </div>
+
+</div>
+
+<div
+id="map"
+style="
+height:750px;
+width:100%;
+border-radius:10px;
+">
 </div>
 
 <link
@@ -21,33 +84,249 @@ src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 
 <script>
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+window.onload = function() {
 
-        var map = L.map(
-            "map"
-        ).setView(
-            [20, 0],
-            2
-        );
+    var map = L.map(
+        "map"
+    ).setView(
+        [30, 10],
+        3
+    );
 
-        L.tileLayer(
-            "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-            {
-                maxZoom: 19
-            }
-        ).addTo(map);
+    L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+            maxZoom: 18
+        }
+    ).addTo(map);
 
-        L.marker(
-            [59.6519, 17.9186]
-        ).addTo(map)
-         .bindPopup(
-            "Stockholm Arlanda"
-         );
+    const airports =
+    {{ airports|tojson|safe }};
 
-    }
-);
+    const routes =
+    {{ routes|tojson|safe }};
+
+    const airportMarkers = [];
+    const routeLines = [];
+
+    airports.forEach(
+
+        function(airport){
+
+            let marker = L.marker(
+
+                [
+                    airport.lat,
+                    airport.lon
+                ]
+
+            )
+
+            .addTo(map)
+
+            .bindPopup(
+
+                "<b>" +
+                airport.name +
+                "</b><br>" +
+
+                "IATA: " +
+                airport.iata +
+                "<br>" +
+
+                "City: " +
+                airport.city +
+                "<br>" +
+
+                "Country: " +
+                airport.country +
+                "<br>" +
+
+                "Departures: " +
+                airport.departures +
+                "<br>" +
+
+                "Arrivals: " +
+                airport.arrivals
+
+            );
+
+            marker.airportData =
+            airport;
+
+            airportMarkers.push(
+                marker
+            );
+
+        }
+
+    );
+
+    routes.forEach(
+
+        function(route){
+
+            let line = L.polyline(
+
+                [
+
+                    [
+                        route.dep_lat,
+                        route.dep_lon
+                    ],
+
+                    [
+                        route.arr_lat,
+                        route.arr_lon
+                    ]
+
+                ],
+
+                {
+                    weight:2
+                }
+
+            )
+
+            .addTo(map);
+
+            line.routeData =
+            route;
+
+            routeLines.push(
+                line
+            );
+
+        }
+
+    );
+
+    document
+    .getElementById(
+        "airportSearch"
+    )
+    .addEventListener(
+
+        "keyup",
+
+        function(){
+
+            let query =
+            this.value
+            .toLowerCase();
+
+            airportMarkers.forEach(
+
+                function(marker){
+
+                    let airport =
+                    marker.airportData;
+
+                    let text = (
+
+                        airport.name +
+                        " " +
+                        airport.iata +
+                        " " +
+                        airport.city +
+                        " " +
+                        airport.country
+
+                    ).toLowerCase();
+
+                    if(
+
+                        text.includes(
+                            query
+                        )
+
+                    ){
+
+                        map.setView(
+
+                            [
+                                airport.lat,
+                                airport.lon
+                            ],
+
+                            8
+
+                        );
+
+                        marker.openPopup();
+
+                    }
+
+                }
+
+            );
+
+        }
+
+    );
+
+    document
+    .getElementById(
+        "flightSearch"
+    )
+    .addEventListener(
+
+        "keyup",
+
+        function(){
+
+            let query =
+            this.value
+            .toLowerCase();
+
+            routeLines.forEach(
+
+                function(line){
+
+                    let flight =
+
+                        line.routeData
+                        .flight
+                        .toLowerCase();
+
+                    if(
+
+                        query &&
+                        flight.includes(
+                            query
+                        )
+
+                    ){
+
+                        line.setStyle({
+
+                            weight:8
+
+                        });
+
+                        map.fitBounds(
+                            line.getBounds()
+                        );
+
+                    } else {
+
+                        line.setStyle({
+
+                            weight:2
+
+                        });
+
+                    }
+
+                }
+
+            );
+
+        }
+
+    );
+
+};
 
 </script>
 

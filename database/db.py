@@ -1,11 +1,19 @@
-from flask import Flask
+from flask import (
+    Flask,
+    session
+)
 
 from flask_login import LoginManager
 
 from config import Config
+
 from database.models import (
     db,
     User
+)
+
+from translations import (
+    LANGUAGES
 )
 
 login_manager = LoginManager()
@@ -18,9 +26,7 @@ login_manager.login_message = (
 
 
 @login_manager.user_loader
-def load_user(
-    user_id
-):
+def load_user(user_id):
 
     return User.query.get(
         int(user_id)
@@ -44,6 +50,31 @@ def create_app():
     login_manager.init_app(
         app
     )
+
+    @app.context_processor
+    def inject_language():
+
+        lang = session.get(
+            "language",
+            Config.DEFAULT_LANGUAGE
+        )
+
+        translations = LANGUAGES.get(
+            lang,
+            LANGUAGES["en"]
+        )
+
+        return {
+
+            "t": translations,
+
+            "current_language":
+                lang,
+
+            "rtl":
+                lang == "ar"
+
+        }
 
     with app.app_context():
 

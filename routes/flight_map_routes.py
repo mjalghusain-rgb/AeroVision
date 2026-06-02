@@ -2,7 +2,8 @@ from flask import Blueprint
 from flask import render_template
 
 from database.models import (
-    Flight
+    Flight,
+    Airport
 )
 
 flight_map_bp = Blueprint(
@@ -15,12 +16,72 @@ flight_map_bp = Blueprint(
 @flight_map_bp.route("/")
 def flight_map():
 
-    flights = (
-        Flight.query
+    airports = (
+        Airport.query
+        .filter(
+            Airport.latitude.isnot(None)
+        )
+        .filter(
+            Airport.longitude.isnot(None)
+        )
+        .limit(1000)
         .all()
     )
 
-    routes = []
+    airport_data = []
+
+    for airport in airports:
+
+        departures = (
+            Flight.query
+            .filter_by(
+                departure_airport_id=airport.id
+            )
+            .count()
+        )
+
+        arrivals = (
+            Flight.query
+            .filter_by(
+                arrival_airport_id=airport.id
+            )
+            .count()
+        )
+
+        airport_data.append({
+
+            "id":
+                airport.id,
+
+            "name":
+                airport.name,
+
+            "iata":
+                airport.iata_code or "",
+
+            "city":
+                airport.city or "",
+
+            "country":
+                airport.country or "",
+
+            "lat":
+                airport.latitude,
+
+            "lon":
+                airport.longitude,
+
+            "departures":
+                departures,
+
+            "arrivals":
+                arrivals
+
+        })
+
+    route_data = []
+
+    flights = Flight.query.all()
 
     for flight in flights:
 
@@ -38,16 +99,16 @@ def flight_map():
         ):
             continue
 
-        routes.append({
+        route_data.append({
 
             "flight":
                 flight.flight_number,
 
-            "departure":
-                dep.name,
+            "dep_airport":
+                dep.iata_code,
 
-            "arrival":
-                arr.name,
+            "arr_airport":
+                arr.iata_code,
 
             "dep_lat":
                 dep.latitude,
@@ -65,5 +126,8 @@ def flight_map():
 
     return render_template(
         "flight_map/index.html",
-        routes=routes
+        airports=airport_data,
+        routes=route_data,
+        airport_count=len(airport_data),
+        flight_count=len(route_data)
     )

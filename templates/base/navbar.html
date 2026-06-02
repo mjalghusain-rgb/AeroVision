@@ -3,7 +3,7 @@
     <div class="container-fluid">
 
         <a class="navbar-brand fw-bold" href="/">
-            ✈ FlightHub
+            ✈ AeroVision
         </a>
 
         <button
@@ -24,62 +24,67 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="/">
-                        Home
+                        {{ t.home }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/flights">
-                        Flights
+                        {{ t.flights }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/flight-map">
+                        {{ t.flight_map }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/bookings">
-                        Bookings
+                        {{ t.bookings }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/hotels">
-                        Hotels
+                        {{ t.hotels }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/cars">
-                        Cars
+                        {{ t.cars }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/airports">
-                        Airports
+                        {{ t.airports }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/airport-services">
-                        Airport Services
+                        {{ t.airport_services }}
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="/analytics">
-
-                        Analytics
-
-                </a>
+                        {{ t.analytics }}
+                    </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/travel">
-                        Travel Info
+                        {{ t.travel_info }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/notifications">
-                        Notifications
+                        {{ t.notifications }}
                     </a>
                 </li>
 
@@ -87,157 +92,179 @@
 
             <ul class="navbar-nav align-items-center">
 
+                <li class="nav-item dropdown me-3">
+
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown">
+
+                        🌐 {{ t.language }}
+
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/language/en">
+
+                                🇬🇧 English
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/language/sv">
+
+                                🇸🇪 Svenska
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/language/ar">
+
+                                🇸🇦 العربية
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/language/ru">
+
+                                🇷🇺 Русский
+
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
                 {% if current_user.is_authenticated %}
 
-                    <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
 
-                        <a
-                            class="nav-link dropdown-toggle d-flex align-items-center"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown">
+                    <a
+                        class="nav-link dropdown-toggle d-flex align-items-center"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown">
 
-                            <img
-                                src="/static/uploads/profile_images/{{ current_user.profile_image or 'default.png' }}"
-                                width="40"
-                                height="40"
-                                class="rounded-circle me-2">
+                        <img
+                            src="/static/uploads/profile_images/{{ current_user.profile_image or 'default.png' }}"
+                            width="40"
+                            height="40"
+                            class="rounded-circle me-2">
 
-                            {{ current_user.username }}
+                        {{ current_user.username }}
 
-                        </a>
+                    </a>
 
-                        <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-end">
 
-                            <li>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/users/profile">
 
-                                <a
-                                    class="dropdown-item"
-                                    href="/users/profile">
+                                👤 {{ t.profile }}
 
-                                    👤 My Profile
+                            </a>
+                        </li>
 
-                                </a>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/users/edit">
 
-                            </li>
+                                ✏ {{ t.edit_profile }}
 
-                            <li>
+                            </a>
+                        </li>
 
-                                <a
-                                    class="dropdown-item"
-                                    href="/users/edit">
+                        {% if current_user.role == "admin" %}
 
-                                    ✏ Edit Profile
+                        <li><hr class="dropdown-divider"></li>
 
-                                </a>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/admin">
 
-                            </li>
+                                🛠 {{ t.admin_dashboard }}
 
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                            </a>
+                        </li>
 
-                            <li>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/admin/users">
 
-                                <a
-                                    class="dropdown-item"
-                                    href="/bookings">
+                                👥 {{ t.manage_users }}
 
-                                    🎫 My Bookings
+                            </a>
+                        </li>
 
-                                </a>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/admin/bookings">
 
-                            </li>
+                                🎫 {{ t.manage_bookings }}
 
-                            {% if current_user.role == "admin" %}
+                            </a>
+                        </li>
 
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                        {% endif %}
 
-                            <li>
+                        <li><hr class="dropdown-divider"></li>
 
-                                <a
-                                    class="dropdown-item"
-                                    href="/admin">
+                        <li>
+                            <a
+                                class="dropdown-item text-danger"
+                                href="/auth/logout">
 
-                                    🛠 Admin Dashboard
+                                🚪 {{ t.logout }}
 
-                                </a>
+                            </a>
+                        </li>
 
-                            </li>
+                    </ul>
 
-                            <li>
-
-                                <a
-                                    class="dropdown-item"
-                                    href="/admin/users">
-
-                                    👥 Manage Users
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a
-                                    class="dropdown-item"
-                                    href="/admin/bookings">
-
-                                    🎫 Manage Bookings
-
-                                </a>
-
-                            </li>
-
-                            {% endif %}
-
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-
-                            <li>
-
-                                <a
-                                    class="dropdown-item text-danger"
-                                    href="/auth/logout">
-
-                                    🚪 Logout
-
-                                </a>
-
-                            </li>
-
-                        </ul>
-
-                    </li>
+                </li>
 
                 {% else %}
 
-                    <li class="nav-item">
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="/auth/login">
 
-                        <a
-                            class="nav-link"
-                            href="/auth/login">
+                        {{ t.login }}
 
-                            Login
+                    </a>
+                </li>
 
-                        </a>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="/auth/register">
 
-                    </li>
+                        {{ t.register }}
 
-                    <li class="nav-item">
-
-                        <a
-                            class="nav-link"
-                            href="/auth/register">
-
-                            Register
-
-                        </a>
-
-                    </li>
+                    </a>
+                </li>
 
                 {% endif %}
 
