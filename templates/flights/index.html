@@ -3,21 +3,97 @@
 {% block content %}
 
 <h1 class="mb-4">
-    ✈ Flight Center
+    ✈ Flight Booking Center
 </h1>
 
-<div class="mb-4">
+<div class="row mb-4">
 
-    <a class="btn btn-warning"
-       href="/flights/live">
+    <div class="col-md-3">
 
-        🌍 Live Flights
+        <a
+        class="btn btn-primary w-100"
+        href="/flights/search-route">
 
-    </a>
+            🔍 Search Flights
+
+        </a>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <a
+        class="btn btn-warning w-100"
+        href="/flights/live">
+
+            🌍 Live Flights
+
+        </a>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <a
+        class="btn btn-info w-100"
+        href="/flight-map">
+
+            🗺 Flight Map
+
+        </a>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <a
+        class="btn btn-success w-100"
+        href="/bookings">
+
+            📖 My Bookings
+
+        </a>
+
+    </div>
+
+</div>
+
+<div class="card mb-4">
+
+    <div class="card-body">
+
+        <h4>
+            Flight Booking
+        </h4>
+
+        <p>
+
+            Search flights by route,
+            view live flights,
+            explore airports on the map
+            and book tickets instantly.
+
+        </p>
+
+        <a
+        class="btn btn-primary"
+        href="/flights/search-route">
+
+            Start Booking
+
+        </a>
+
+    </div>
 
 </div>
 
 <div class="card">
+
+    <div class="card-header">
+
+        Latest Flights
+
+    </div>
 
     <div class="card-body">
 
@@ -38,7 +114,7 @@
 
             <tbody>
 
-            {% for flight in flights %}
+            {% for flight in flights[:25] %}
 
                 <tr>
 

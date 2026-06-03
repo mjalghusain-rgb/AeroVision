@@ -3,11 +3,6 @@ from flask import render_template
 from flask import abort
 from flask import request
 
-from database.models import (
-    Airport,
-    Flight
-)
-
 from services.flight_service import (
     FlightService
 )
@@ -40,52 +35,6 @@ def flights():
     return render_template(
         "flights/index.html",
         flights=flights
-    )
-
-
-@flight_bp.route("/search-route")
-def search_route():
-
-    airports = (
-        Airport.query
-        .filter(
-            Airport.iata_code.isnot(None)
-        )
-        .order_by(
-            Airport.city.asc()
-        )
-        .all()
-    )
-
-    departure_id = request.args.get(
-        "departure_id",
-        type=int
-    )
-
-    arrival_id = request.args.get(
-        "arrival_id",
-        type=int
-    )
-
-    flights = []
-
-    if departure_id and arrival_id:
-
-        flights = (
-            Flight.query
-            .filter_by(
-                departure_airport_id=departure_id,
-                arrival_airport_id=arrival_id
-            )
-            .all()
-        )
-
-    return render_template(
-        "flights/search_route.html",
-        airports=airports,
-        flights=flights,
-        departure_id=departure_id,
-        arrival_id=arrival_id
     )
 
 

@@ -1,0 +1,171 @@
+{% extends "base/layout.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    ✈ Flight Booking Center
+</h1>
+
+<form method="GET">
+
+<div class="row mb-4">
+
+<div class="col-md-5">
+
+<label>
+From Airport
+</label>
+
+<select
+name="departure_id"
+class="form-select">
+
+<option value="">
+Select Airport
+</option>
+
+{% for airport in airports %}
+
+<option
+value="{{ airport.id }}"
+{% if departure_id == airport.id %}
+selected
+{% endif %}
+>
+
+{{ airport.iata_code }}
+-
+{{ airport.city }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="col-md-5">
+
+<label>
+To Airport
+</label>
+
+<select
+name="arrival_id"
+class="form-select">
+
+<option value="">
+Select Airport
+</option>
+
+{% for airport in airports %}
+
+<option
+value="{{ airport.id }}"
+{% if arrival_id == airport.id %}
+selected
+{% endif %}
+>
+
+{{ airport.iata_code }}
+-
+{{ airport.city }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="col-md-2">
+
+<label>
+Search
+</label>
+
+<button
+class="btn btn-primary w-100">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+{% if flights %}
+
+<div class="card">
+
+<div class="card-body">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Flight</th>
+<th>Airline</th>
+<th>Route</th>
+<th></th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for flight in flights %}
+
+<tr>
+
+<td>
+{{ flight.flight_number }}
+</td>
+
+<td>
+{% if flight.airline %}
+{{ flight.airline.name }}
+{% endif %}
+</td>
+
+<td>
+{{ flight.departure_airport.iata_code }}
+→
+{{ flight.arrival_airport.iata_code }}
+</td>
+
+<td>
+
+<a
+class="btn btn-success btn-sm"
+href="/flights/details/{{ flight.flight_number }}">
+
+Open
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
